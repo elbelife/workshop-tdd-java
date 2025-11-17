@@ -185,8 +185,6 @@ There are plenty of tools out there that can help you with this. In this worksho
 
     You can check the current status of the workshop project by clicking the following link:
 
-    [Trello Board](https://trello.com/b/rvbvAXFn/workshop-tdd-java)
-
 
 ## Examples
 
