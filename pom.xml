@@ -26,16 +26,10 @@
       <version>5.11.4</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>5.11.4</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
       <version>5.11.4</version>
       <scope>test</scope>
     </dependency>
@@ -113,11 +107,12 @@
               </execution>
               <execution>
                 <id>report</id>
-                <phase>prepare-package</phase>
+                <phase>verify</phase>
                 <goals>
                   <goal>report</goal>
                 </goals>
                 <configuration>
+                  <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
                   <formats>
                     <format>XML</format>
                   </formats>
@@ -134,6 +129,26 @@
                   <dataFile>${project.build.directory}/jacoco.exec</dataFile>
                   <!-- Sets the output directory for the code coverage report. -->
                   <outputDirectory>${project.build.directory}/site/jacoco-it</outputDirectory>
+                </configuration>
+              </execution>
+              <execution>
+                <id>jacoco-check</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <rule>
+                      <element>PACKAGE</element>
+                      <limits>
+                        <limit>
+                          <counter>LINE</counter>
+                          <value>COVEREDRATIO</value>
+                        </limit>
+                      </limits>
+                    </rule>
+                  </rules>
                 </configuration>
               </execution>
             </executions>
